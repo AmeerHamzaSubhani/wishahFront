@@ -76,3 +76,17 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+.bg-main-bg {
+  background-image: url('../assets/images/mainBg.png'); 
+  background-size: cover; 
+  background-position: center; 
+}
+
+.bg-cover {
+  background-image: url('../assets/images/blankBg.png'); 
+  background-size: cover; 
+  background-position: center; 
+  opacity: 0.8;
+}
