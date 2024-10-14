@@ -1,9 +1,10 @@
 import React from 'react'
 
-function mainIcon() {
+function mainIcon({widthOfIcon, heightOfIcon}: {heightOfIcon: string,widthOfIcon: string}) {
   return (
     <>
-        <svg width="229" height="182" viewBox="0 0 229 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<svg width={widthOfIcon?`${widthOfIcon}`:"229"} height={heightOfIcon?`${heightOfIcon}`:"182"} viewBox="0 0 229 182" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M117.532 0C157.993 0 190.794 31.822 190.794 71.0821C190.794 77.795 189.833 84.2912 188.04 90.4468H179.317C181.346 84.3442 182.449 77.8392 182.449 71.0821C182.449 36.2972 153.384 8.09701 117.528 8.09701C81.671 8.09701 52.6066 36.2972 52.6066 71.0821C52.6066 77.8392 53.7098 84.3442 55.7381 90.4468H47.0153C45.2226 84.2912 44.2618 77.795 44.2618 71.0821C44.2618 31.8264 77.0627 0 117.523 0H117.532Z" fill="#3CA132"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M185.069 99.2292C173.833 124.484 147.935 142.164 117.777 142.164C87.6226 142.164 61.7253 124.484 50.4848 99.2292H59.6881C70.3414 119.885 92.351 134.067 117.777 134.067C143.203 134.067 165.212 119.881 175.865 99.2292H185.069Z" fill="#7BC03D"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M146.503 38.8267C91.0432 66.9738 108.026 107.826 135.218 92.1272C149.461 83.9019 149.417 52.3408 146.503 38.8267Z" fill="#E11061" stroke="#FEFEFE" stroke-width="0.666828" stroke-miterlimit="2.61313"/>

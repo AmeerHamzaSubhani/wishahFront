@@ -2,10 +2,13 @@
 import MainIcon from "@/assets/mainIcon";
 import { Button } from "@/components/ui/button";
 import ArrowIcon from "@/assets/arrowIcon"
+import { useRouter } from 'next/navigation';
 export default function Home() {
-
+  const router = useRouter();
+  
   const handleClick = () => {
     console.log("Clicked");
+    router.push('/login');
   }
   return (
     <div className="w-full h-screen"> {/* Ensure height is set */}
@@ -34,7 +37,7 @@ with integrated CMS website. Using this system admin can Customize Service time 
           </div>
           {/* Button */}
           <div className="flex justify-center items-center">
-            <Button className=" bg-[#8BC152] gap-x-3" size="lg" variant='default' onClick={handleClick}>
+            <Button className=" bg-[#8BC152] hover:bg-[#80c239] gap-x-3" size="lg" variant='default' onClick={handleClick}>
               get started
             <ArrowIcon/>
             </Button>
