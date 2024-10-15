@@ -5,8 +5,10 @@ import DashBoardIcon from "@/assets/dashBoardIcon";
 import LogoutIcon from "@/assets/logoutIcon";
 import NoteBookIcon from "@/assets/noteBookIcon";
 import BookingIcon from "@/assets/bookingIcon";
-
-function SideBar() {
+function SideBar({setCurrentPage}:{setCurrentPage:any}) {
+   const handleLogOut =()=>{
+    console.log('Logout button clicked');
+   }
   return (
     <div className="flex flex-col w-[248px] bg-white h-screen shadow-md">
       {/* Logo Section */}
@@ -19,25 +21,25 @@ function SideBar() {
 
       {/* Menu Items */}
       <div className="flex flex-col  mt-10 space-y-6 px-4">
-        <MenuItem icon={<DashBoardIcon />} label="Dashboard" />
-        <MenuItem icon={<NoteBookIcon />} label="Services" />
-        <MenuItem icon={<BagIcon />} label="Staff" />
-        <MenuItem icon={<BookingIcon />} label="Booking" />
+        <MenuItem icon={<DashBoardIcon color={'#8BC152'}/>} label="Dashboard" setCurrentPage={setCurrentPage} />
+        <MenuItem icon={<NoteBookIcon color={'#8BC152'}/>} label="Services" setCurrentPage={setCurrentPage}/>
+        <MenuItem icon={<BagIcon color={'#8BC152'}/>} label="Staff" setCurrentPage={setCurrentPage} />
+        <MenuItem icon={<BookingIcon color={'#8BC152'}/>} label="Booking" setCurrentPage={setCurrentPage} />
       </div>
 
       {/* Logout Section */}
-      <div className="flex flex-row mt-auto mb-4 px-4">
-        <MenuItem icon={<LogoutIcon />} label="Logout" />
+      <div className="flex flex-row mt-auto mb-4 px-4" onClick={handleLogOut}>
+        <MenuItem icon={<LogoutIcon />} label="Logout"  />
       </div>
     </div>
   );
 }
 
 // MenuItem Component
-const MenuItem = ({ icon, label }:{label:string}) => {
+const MenuItem = ({ icon, label, setCurrentPage }:{label:string,setCurrentPage:any}) => {
   return (
-    <div className="flex flex-row justify-start items-center w-full space-x-4 py-2 ml-10">
-      <div className="text-green-600">{icon}</div>
+    <div className="flex flex-row justify-start items-center w-full space-x-4 py-2 ml-10" onClick={() => setCurrentPage(label)}>
+      <div className="">{icon}</div>
       <span className="text-gray-800">{label}</span>
     </div>
   );

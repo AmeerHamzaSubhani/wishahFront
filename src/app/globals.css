@@ -1,9 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Argentum+Sans:wght@400;700&display=swap');
 body {
-  font-family: argentum-sans, sans-serif; ;
+  font-family: 'Argentum Sans', sans-serif;
+  background-color:'#EFF0F5';
 }
 
 @layer utilities {

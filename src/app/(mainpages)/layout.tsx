@@ -1,8 +1,59 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import SideBar from '@/components/customComponents/sideBar'
 import NavBar from '@/components/customComponents/navBar'
-import TableCard from '@/components/customComponents/tableCard'
+import BookingPage from "@/components/mainPages/bookingPage"
+import ServicePage from "@/components/mainPages/servicesPage"
+import StaffPage from "@/components/mainPages/staffPage"
+import DashboardPage from "@/components/mainPages/dashBoardPage"
 function layout() {
+    const [currentPage, setCurrentPage] = useState('Booking');
+    const [servicePage, setServicePage] = useState(false);
+    const [staffPage, setStaffPage] = useState(false);
+    const [bookingPage, setBookingPage] = useState(false);
+    const [dashBoardPage, setDashBoardPage] = useState(false);
+     
+
+    const handlePages = () => {
+        switch (currentPage) {
+            case 'Services':
+        console.log('case Services',currentPage);
+
+             setServicePage(true);
+             setBookingPage(false);
+             setStaffPage(false);
+             setDashBoardPage(false);
+             break;
+            case 'Staff':
+        console.log('case Staff',currentPage);
+
+                setStaffPage(true);
+                setServicePage(false);
+                setDashBoardPage(false);
+                setBookingPage(false);
+                break;
+            case 'Booking':
+        console.log('case Booking',currentPage);
+
+                setBookingPage(true);
+                setStaffPage(false);
+                setServicePage(false);
+                setDashBoardPage(false);
+                break;
+            default:
+        console.log('case default',currentPage);
+
+             setDashBoardPage(true);
+             setBookingPage(false);
+             setStaffPage(false);
+             setServicePage(false);
+             break;
+        }
+    }
+    useEffect(() => {
+        handlePages();
+        console.log(currentPage);
+    },[currentPage]);
     const handleToday = () => {
         console.log('Today button clicked');
     }
@@ -21,14 +72,17 @@ function layout() {
         { header: 'Email', accessor: 'email' },
       ];
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-3 bg-[#EFF0F5]">
         <div className="">
-        <SideBar/>
+        <SideBar setCurrentPage={setCurrentPage}/>
         </div>
         <div className="flex flex-col " style={ {width:"calc(100% - 248px)"}}>
-        <NavBar/>
-        <div>
-            <TableCard  sampleColumns={sampleColumns} sampleData={sampleData}/>
+        <NavBar valueToDisplay={currentPage}/>
+        <div className="flex flex-col justify-center items-center bg-[#EFF0F5] " style={ {width:"calc(100% - 240px)"}}>
+            {dashBoardPage && <DashboardPage/>}
+           {servicePage && <ServicePage/>} 
+          {staffPage&&<StaffPage/>}
+          {bookingPage&&<BookingPage/>}
         </div>
             
         </div>
