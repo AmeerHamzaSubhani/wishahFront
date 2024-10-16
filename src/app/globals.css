@@ -1,9 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Argentum+Sans:wght@400;700&display=swap');
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Argentum Sans', sans-serif;
+  background-color:'#EFF0F5';
 }
 
 @layer utilities {
@@ -75,4 +76,18 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+.bg-main-bg {
+  background-image: url('../assets/images/mainBg.png'); 
+  background-size: cover; 
+  background-position: center; 
+}
+
+.bg-cover {
+  background-image: url('../assets/images/blankBg.png'); 
+  background-size: cover; 
+  background-position: center; 
+  opacity: 0.8;
 }

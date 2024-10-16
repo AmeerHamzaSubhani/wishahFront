@@ -1,101 +1,50 @@
-import Image from "next/image";
-
+'use client';
+import MainIcon from "@/assets/mainIcon";
+import { Button } from "@/components/ui/button";
+import ArrowIcon from "@/assets/arrowIcon"
+import { useRouter } from 'next/navigation';
 export default function Home() {
+  const router = useRouter();
+  
+  const handleClick = () => {
+    console.log("Clicked");
+    router.push('/login');
+  }
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="w-full h-screen"> {/* Ensure height is set */}
+      <div className="relative bg-main-bg h-full w-full bg-center text-white">
+        <div className="absolute w-full bg-cover h-full">
+        </div> 
+        <div className="absolute flex flex-col justify-center items-center  h-full space-y-10"> {/* Flex container full height */}
+          {/* Icon */}
+          <div className="div">
+            <MainIcon />
+          </div>
+          {/* Header text */}
+          <div className="flex justify-center items-center">
+          <h3 className=" w-[70%] sm:w-full text-l sm:text-3xl font-bold text-white">
+              About Wishah Appointment Booking & Schedules
+              </h3>
+          </div>
+          {/* Between */}
+          <div className="w-[70%] sm:w-[80%] text-white leading-6">
+            {/* Add content here */}
+            <p>
+            Wishah SPA booking is one of the best spa, salon and any kinds of Therapist's appointment and schedules booking application
+with integrated CMS website. Using this system admin can Customize Service time slot, Daily/Weekly/Monthly Booking
+& cancelation limitation, Employee wise service and service price.
+            </p>
+          </div>
+          {/* Button */}
+          <div className="flex justify-center items-center">
+            <Button className=" bg-[#8BC152] hover:bg-[#80c239] gap-x-3" size="lg" variant='default' onClick={handleClick}>
+              get started
+            <ArrowIcon/>
+            </Button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          
+      </div>
     </div>
   );
 }
