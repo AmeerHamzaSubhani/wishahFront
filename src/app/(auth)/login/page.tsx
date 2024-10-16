@@ -7,7 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import Image from 'next/image';
 import SideImg from "@/assets/svgs/sideImg.svg";
-
+import axios from 'axios';
+import Cookies from 'js-cookie';
 function Page() {
   const router = useRouter();
 
@@ -16,20 +17,41 @@ function Page() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault(); // Prevent default form submission
 
     // Basic validation
     if (!email || !password) {
-      setError('Please fill in all fields');
-      return;
+        setError('Please fill in all fields');
+        return;
     }
 
-    // You can add more complex validations here if needed
+    try {
+        const response = await axios.post(`http://localhost:8000/auth/login`, { email, password });
+        console.log('response===>', response);
 
-    // If validation passes, navigate to another page (for example, '/dashboard')
-    router.push('/dashboard'); // Adjust the route as needed
-  };
+        if (response?.status === 201) {
+            const token = response.data.access_token.access_token
+            const refreshToken = response.data.access_token.refresh_token
+            const isAdmin = response.data.data.isAdmin
+            Cookies.set('access_token', token)
+            Cookies.set('refresh_token', refreshToken)
+            Cookies.set('isAdmin', isAdmin)
+            if(token && refreshToken){
+              router.push('/dashboard');
+            }
+        } else {
+            setError('Invalid email or password'); 
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        if (error) {
+            setError(error?.response.data.message || 'An error occurred during login');
+        } else {
+            setError('An error occurred. Please try again later.');
+        }
+    }
+};
 
   return (
     <div className='flex w-full'>
@@ -64,7 +86,7 @@ function Page() {
               placeholder="Enter your email" 
               className='bg-white font-semibold w-[618px] h-[70px] rounded-xl p-x-10 shadow-md shadow-black'
               value={email}
-              onChange={(e) => setEmail(e.target.value)} // Update state on input change
+              onChange={(e) => setEmail(e.target.value)} 
             />
           </div>
           <div className="z-20">
@@ -73,7 +95,7 @@ function Page() {
               placeholder="Password" 
               className='bg-white font-semibold w-[618px] h-[70px] rounded-xl p-x-10 shadow-md shadow-black'
               value={password}
-              onChange={(e) => setPassword(e.target.value)} // Update state on input change
+              onChange={(e) => setPassword(e.target.value)} 
             />
           </div>
           <div className="flex justify-between items-center p-x-3">

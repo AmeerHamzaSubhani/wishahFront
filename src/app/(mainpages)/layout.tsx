@@ -6,13 +6,20 @@ import BookingPage from "@/components/mainPages/bookingPage"
 import ServicePage from "@/components/mainPages/servicesPage"
 import StaffPage from "@/components/mainPages/staffPage"
 import DashboardPage from "@/components/mainPages/dashBoardPage"
+import { useRouter } from 'next/navigation';
 function layout() {
-    const [currentPage, setCurrentPage] = useState('Booking');
+    const router = useRouter();
+    const [currentPage, setCurrentPage] = useState('Services');
     const [servicePage, setServicePage] = useState(false);
     const [staffPage, setStaffPage] = useState(false);
     const [bookingPage, setBookingPage] = useState(false);
     const [dashBoardPage, setDashBoardPage] = useState(false);
-     
+    const [serviceName, setServiceName] = useState('');
+    const [requiredTherapists, setRequiredTherapists] = useState('');
+    const [amenities, setAmenities] = useState('');
+    const [duration, setDuration] = useState('');
+    const [price, setPrice] = useState('');
+    const [serviceModalOpen, setServiceModalOpen] = useState(false);
 
     const handlePages = () => {
         switch (currentPage) {
@@ -60,17 +67,9 @@ function layout() {
     const handleMonth = () => {
         console.log('Month button clicked');
     }
-    const sampleData = [
-        { id: 1, name: 'John Doe', email: 'john@example.com' },
-        { id: 2, name: 'Jane Smith', email: 'jane@example.com' },
-        // Add more sample data as needed
-      ];
-      
-      const sampleColumns = [
-        { header: 'ID', accessor: 'id' },
-        { header: 'Name', accessor: 'name' },
-        { header: 'Email', accessor: 'email' },
-      ];
+    const handleAddService = () => {
+        setServiceModalOpen(true);
+    }
   return (
     <div className="flex gap-3 bg-[#EFF0F5]">
         <div className="">
@@ -80,7 +79,7 @@ function layout() {
         <NavBar valueToDisplay={currentPage}/>
         <div className="flex flex-col justify-center items-center bg-[#EFF0F5] " style={ {width:"calc(100% - 240px)"}}>
             {dashBoardPage && <DashboardPage/>}
-           {servicePage && <ServicePage/>} 
+           {servicePage && <ServicePage handleAddService={handleAddService} serviceModalOpen={serviceModalOpen}  setServiceModalOpen={setServiceModalOpen}/>} 
           {staffPage&&<StaffPage/>}
           {bookingPage&&<BookingPage/>}
         </div>
