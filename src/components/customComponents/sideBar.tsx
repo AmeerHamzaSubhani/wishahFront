@@ -5,12 +5,10 @@ import DashBoardIcon from "@/assets/dashBoardIcon";
 import LogoutIcon from "@/assets/logoutIcon";
 import NoteBookIcon from "@/assets/noteBookIcon";
 import BookingIcon from "@/assets/bookingIcon";
-function SideBar({setCurrentPage}:{setCurrentPage:any}) {
-   const handleLogOut =()=>{
-    console.log('Logout button clicked');
-   }
+function SideBar({setCurrentPage,handleLogOut}:{setCurrentPage:(page: string) => void; handleLogOut:() => void;}) {
+
   return (
-    <div className="flex flex-col w-[248px] bg-white h-screen shadow-md">
+    <div className="flex flex-col w-[248px] bg-white h-screen shadow-md cursor-pointer">
       {/* Logo Section */}
       <div className="flex justify-center items-center my-10">
         <MainIcon widthOfIcon="120" heightOfIcon="96" />
@@ -28,17 +26,20 @@ function SideBar({setCurrentPage}:{setCurrentPage:any}) {
       </div>
 
       {/* Logout Section */}
-      <div className="flex flex-row mt-auto mb-4 px-4" onClick={handleLogOut}>
-        <MenuItem icon={<LogoutIcon />} label="Logout"  />
+      <div className="flex flex-row mt-auto mb-4 px-4 cursor-pointer" onClick={handleLogOut}>
+        <div className="flex flex-row justify-start items-center w-full space-x-4 py-2 ml-10 cursor-pointer">
+      <div className=""><LogoutIcon /></div>
+      <span className="text-gray-800">Logout</span>
+    </div>
       </div>
     </div>
   );
 }
 
 // MenuItem Component
-const MenuItem = ({ icon, label, setCurrentPage }:{label:string,setCurrentPage:any}) => {
+const MenuItem = ({ icon, label, setCurrentPage }:{ icon: React.ReactNode; label:string,setCurrentPage:(label:string) => void; }) => {
   return (
-    <div className="flex flex-row justify-start items-center w-full space-x-4 py-2 ml-10" onClick={() => setCurrentPage(label)}>
+    <div className="flex flex-row justify-start items-center w-full space-x-4 py-2 ml-10 cursor-pointer" onClick={() => setCurrentPage(label)}>
       <div className="">{icon}</div>
       <span className="text-gray-800">{label}</span>
     </div>

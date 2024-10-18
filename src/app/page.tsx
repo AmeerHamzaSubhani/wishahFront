@@ -5,7 +5,9 @@ import ArrowIcon from "@/assets/arrowIcon"
 import { useRouter } from 'next/navigation';
 export default function Home() {
   const router = useRouter();
-  
+  const content =` Wishah SPA booking is one of the best spa, salon and any kinds of Therapist's appointment and schedules booking application
+  with integrated CMS website. Using this system admin can Customize Service time slot, Daily/Weekly/Monthly Booking
+  & cancelation limitation, Employee wise service and service price.`
   const handleClick = () => {
     console.log("Clicked");
     router.push('/login');
@@ -18,7 +20,7 @@ export default function Home() {
         <div className="absolute flex flex-col justify-center items-center  h-full space-y-10"> {/* Flex container full height */}
           {/* Icon */}
           <div className="div">
-            <MainIcon />
+            <MainIcon heightOfIcon={'255px'} widthOfIcon={'321px'} />
           </div>
           {/* Header text */}
           <div className="flex justify-center items-center">
@@ -30,9 +32,7 @@ export default function Home() {
           <div className="w-[70%] sm:w-[80%] text-white leading-6">
             {/* Add content here */}
             <p>
-            Wishah SPA booking is one of the best spa, salon and any kinds of Therapist's appointment and schedules booking application
-with integrated CMS website. Using this system admin can Customize Service time slot, Daily/Weekly/Monthly Booking
-& cancelation limitation, Employee wise service and service price.
+               {content}
             </p>
           </div>
           {/* Button */}

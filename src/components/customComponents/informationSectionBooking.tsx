@@ -10,15 +10,29 @@ import {  Dialog,
   DialogFooter,
   DialogTitle,
   DialogDescription, } from "../ui/dialog";
-  import { Input } from '@/components/ui/input'; // Assuming you have an Input component
-import { Button } from '@/components/ui/button'; // Assuming you have a Button component
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select';
+  import { Input } from '@/components/ui/input'; 
+import { Button } from '@/components/ui/button'; 
+interface InformationSectionProps {
+  title: string;
+  Icon: React.ReactNode; 
+  handleAdd: () => void; 
+  setServiceName: (name: string) => void;
+  serviceName: string;
+  requiredTherapists: number; 
+  setRequiredTherapists: (count: number) => void; 
+  amenities: string;
+  duration: string; 
+  setDuration: (duration: string) => void; 
+  price: number; 
+  setPrice: (price: number) => void; 
+  setServiceModalOpen: (open: boolean) => void; 
+}
 function informationSectionBooking({
   title,
   Icon,
   handleAdd,
-  serviceName, setServiceName,requiredTherapists, setRequiredTherapists,amenities, setAmenities,duration, setDuration,price, setPrice, setServiceModalOpen 
-}:any) {
+  serviceName, setServiceName,requiredTherapists, setRequiredTherapists,amenities,duration, setDuration,price, setPrice, setServiceModalOpen 
+}:InformationSectionProps) {
 
   const handleSaveChanges = () => {
     // Handle form submission logic here
@@ -91,7 +105,7 @@ function informationSectionBooking({
                                 type="text"
                                 placeholder="Enter number of therapists required"
                                 value={requiredTherapists}
-                                onChange={(e) => setRequiredTherapists(e.target.value)}
+                                onChange={(e) => setRequiredTherapists(parseInt(e.target.value))}
                                 className="mt-1"
                             />
                         </div>
@@ -113,7 +127,7 @@ function informationSectionBooking({
                                 type="number"
                                 placeholder="Enter price"
                                 value={price}
-                                onChange={(e) => setPrice(e.target.value)}
+                                onChange={(e) => setPrice(parseInt(e.target.value))}
                                 className="mt-1"
                             />
                         </div>

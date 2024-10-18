@@ -1,17 +1,16 @@
 import React from 'react';
-import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
-import { CircularProgressbar } from "react-circular-progressbar";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import 'react-circular-progressbar/dist/styles.css';
-const serviceDate =[
-    {
-        name: 'Today',
-        count: 0
-    },
-    {},
-    {},
-    {},
-    {},
-]
+// const serviceDate =[
+//     {
+//         name: 'Today',
+//         count: 0
+//     },
+//     {},
+//     {},
+//     {},
+//     {},
+// ]
 function servicesCard() {
   return (
     <Card>
