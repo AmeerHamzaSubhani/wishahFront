@@ -1,6 +1,6 @@
 import React from 'react'
 import TableComponent from '@/components/customComponents/table'
-import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import {
     Select,
@@ -8,26 +8,19 @@ import {
     SelectValue,
     SelectTrigger,
     SelectContent,
-    SelectLabel,
     SelectItem,
-    SelectSeparator,
-    SelectScrollUpButton,
-    SelectScrollDownButton,
   } from '@/components/ui/select'
   interface TableCardProps {
     title: string; // Card title
     sampleColumns: Array<{ header: string; accessor: string }>; // Column definitions for the table
-    sampleData: Array<Record<string, any>>; // Row data for the table
+    sampleData: Array<Record<string, string>>; // Row data for the table
     selectOptions: Array<{ label: string; value: string }>; // Options for the select dropdown
     buttonLabels: { today: string; month: string }; // Button labels
   }
   
   const TableCard: React.FC<TableCardProps> =({
-    title,
     sampleColumns,
     sampleData,
-    selectOptions,
-    buttonLabels,
   }) =>{
   return (
     <Card className='w-[620px] h-[384px]'>

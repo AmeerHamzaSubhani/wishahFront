@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '.
 
 interface TableComponentProps {
   columns: Array<{ header: string; accessor: string }>; // Define your column structure
-  data: Array<Record<string, any>>; // The data to be displayed
+  data: Array<Record<string, string>>; // The data to be displayed
 }
 
 const TableComponent: React.FC<TableComponentProps> = ({ columns, data }) => {
