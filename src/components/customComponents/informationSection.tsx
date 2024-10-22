@@ -95,7 +95,6 @@ function InformationSection({
     if (isValid) {
       
       const token = Cookies.get('access_token')
-      console.log('token===>',token)
       setIsLoading(true)
       try {
         if(token){
@@ -114,7 +113,6 @@ function InformationSection({
             }
           );
         
-          console.log('Response: while Saving', response);
           if(response.data.statusCode === 200){
             setIsLoading(false)
             toast("Service Added", {
@@ -124,20 +122,22 @@ function InformationSection({
                 onClick: () => console.log("Undo"),
               },
             })
-            setServicesData(response.data.updatedData)
+            setServicesData(response.data.updatedDate)
             setServiceName('')
             setRequiredTherapists(0)
             setDuration('')
             setPrice(0)
+            setServiceModalOpen(false);
           }
           else {
-            toast("Service Added", {
+            toast("Service", {
               description: response.data.message,
               action: {
                 label: "Undo",
                 onClick: () => console.log("Undo"),
               },
             })
+            setServiceModalOpen(false);
           }
         }
         else{
@@ -155,7 +155,6 @@ function InformationSection({
         price,
         serviceModalOpen,
       });
-      setServiceModalOpen(true);
     }
   };
 
@@ -182,6 +181,7 @@ function InformationSection({
       <div className="" onClick={handleAdd}>
         <Dialog>
           <DialogTrigger asChild>
+          <div className="div" onClick={() => setServiceModalOpen(true)}>
             <Button
               className="flex flex-row justify-center items-center bg-[#8BC152] hover:bg-[#80c239] gap-x-3"
               size="lg"
@@ -190,12 +190,13 @@ function InformationSection({
               <div className="div">{Icon}</div>
               <div className="div">{title}</div>
             </Button>
+          </div>
           </DialogTrigger>
           <DialogPortal>
             <DialogOverlay />
 
-            {isLoading&&(<SaveLoader/>)}
-            <DialogContent className="min-w-[450px] max-w-[730px] p-6">
+            { isLoading&&(<SaveLoader/>)}
+           { serviceModalOpen && ( <DialogContent className="min-w-[450px] max-w-[730px] p-6">
               <DialogHeader>
                 <DialogTitle className="text-2xl text-[#F05F97]">
                   Add New Services
@@ -292,7 +293,7 @@ function InformationSection({
                   Save Changes
                 </Button>
               </DialogFooter>
-            </DialogContent>
+            </DialogContent> )}
           </DialogPortal>
         </Dialog>
       </div>

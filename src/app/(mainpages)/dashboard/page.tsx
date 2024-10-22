@@ -76,7 +76,32 @@ function RanderPage() {
       if(response.data.statusCode === 200){
         setServicesData(response.data.data);
       }
-      } catch (error) {
+      } catch (error:{}) {
+          if(error?.response?.data?.statusCode === 401){
+            try {
+                
+                const token = Cookies.get('refresh_token')
+                console.log('token===>',token)
+                    const response = await axios.post(
+                      `http://localhost:8000/auth/refreshToken`,
+                      {
+                        refreshToken:token,
+                        email:"subhaniameerhamza@gmail.com"
+                      },
+                    );
+                  console.log('Response: while Saving', response);
+                  if(response.data.statusCode === 200){
+                    const token = response.data.data.access_token
+                    Cookies.set('access_token', token)
+                    getServicesData()
+            }
+              console.log('Error: while Saving', error);
+              getServicesData()
+            } catch (error) {
+          console.log('Error: while Saving', error);
+                
+            }
+          }
           console.log('Error: while Saving', error);
       }
   }
